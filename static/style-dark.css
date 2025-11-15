@@ -1,353 +1,344 @@
-/* -------------------------------------------
-   RESET + BASE
-------------------------------------------- */
+/* ---------------------------------------------------
+    GLOBAL DARK THEME
+------------------------------------------------------ */
 :root {
-  --bg: #0b0b0d;
-  --card: #0f1113;
-  --muted: #9aa0a6;
-  --accent: #e50914;
-  --text: #e6e7e8;
-  --glass: rgba(255, 255, 255, 0.03);
-}
-
-* {
-  box-sizing: border-box;
+    --bg: #0d0f17;
+    --card: #151823;
+    --text: #ffffff;
+    --muted: #878a96;
+    --accent: #6a5af9;
+    --danger: #ff4f4f;
+    --success: #3adb78;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    --radius: 14px;
+    --trans: 0.25s ease;
+    font-family: "Inter", sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: Inter, system-ui, Arial;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
 }
 
+/* ---------------------------------------------------
+    LAYOUT
+------------------------------------------------------ */
 .container {
-  width: 94%;
-  max-width: 1150px;
-  margin: auto;
-  padding: 24px 0;
+    width: min(1200px, 92%);
+    margin: auto;
+    padding: 20px 0;
 }
 
-
-/* -------------------------------------------
-   HEADER / NAVBAR
-------------------------------------------- */
-.site-header {
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.section-title {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    font-weight: 700;
+    color: var(--text);
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
+/* ---------------------------------------------------
+    NAVBAR
+------------------------------------------------------ */
+.navbar {
+    width: 100%;
+    height: 68px;
+    background: #11131c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6%;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.logo img {
-  height: 44px;
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
 }
 
-.nav a {
-  margin-left: 20px;
-  color: var(--muted);
-  font-weight: 600;
-  text-decoration: none;
-  transition: .2s ease;
+.navbar ul {
+    display: flex;
+    gap: 24px;
 }
 
-.nav a:hover {
-  color: #fff;
+.navbar ul a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--trans);
 }
 
-
-/* -------------------------------------------
-   HERO SECTION
-------------------------------------------- */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 60px 0;
-  gap: 40px;
+.navbar ul a:hover {
+    color: var(--accent);
 }
 
-.hero-left {
-  flex: 1;
+/* Cart icon */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
 }
 
-.hero-right {
-  flex: 1;
-  text-align: right;
+.cart-count {
+    background: var(--accent);
+    color: #fff;
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8rem;
 }
 
-.hero-img {
-  max-width: 360px;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+/* ---------------------------------------------------
+    HERO / TOP SECTION
+------------------------------------------------------ */
+.ts-hero {
+    text-align: center;
+    padding: 60px 0;
 }
 
-h1 {
-  font-size: 2.4rem;
-  margin-bottom: 10px;
+.ts-hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
 }
 
-.lead {
-  color: var(--muted);
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.ts-hero p {
+    color: var(--muted);
 }
 
-
-/* -------------------------------------------
-   BUTTONS
-------------------------------------------- */
+/* ---------------------------------------------------
+    BUTTONS
+------------------------------------------------------ */
 .btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
-  text-decoration: none;
-  transition: .2s ease;
-  border: 1px solid transparent;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--trans);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn.primary {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(229,9,20,0.25);
+    background: var(--accent);
+    color: #fff;
 }
-
 .btn.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(229,9,20,0.33);
+    opacity: 0.8;
 }
 
 .btn.ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--text);
 }
-
 .btn.ghost:hover {
-  border-color: #fff;
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .btn.outlined {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--text);
+}
+.btn.outlined:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .btn.small {
-  padding: 6px 10px;
-  font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.85rem;
 }
 
+/* ---------------------------------------------------
+    TECHSELLPRO PLAN GRID STYLING
+------------------------------------------------------ */
 
-/* -------------------------------------------
-   OTT LOGO ROW
-------------------------------------------- */
-.logos-row {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  margin: 10px 0 30px;
+.plans-grid-ts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
 }
 
-.logos-row img {
-  height: 34px;
-  opacity: 0.85;
-  transition: .2s;
+.ts-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    transition: var(--trans);
 }
 
-.logos-row img:hover {
-  opacity: 1;
+.ts-card:hover {
+    transform: translateY(-4px);
 }
 
-
-/* -------------------------------------------
-   PLANS GRID
-------------------------------------------- */
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+.ts-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-.card {
-  background: var(--card);
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-  transition: .2s;
+.logo-wrap {
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
 }
 
-.card:hover {
-  transform: translateY(-4px);
+.logo-wrap img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
 }
 
-.plan-card .provider-logo {
-  height: 55px;
+.plan-title h3 {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.plan-title .muted {
+    margin-top: 4px;
+    color: var(--muted);
+}
+
+.ts-card-body {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .price {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--accent);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--accent);
 }
 
-.card-actions {
-  margin-top: 14px;
-  display: flex;
-  gap: 10px;
+.qty-input {
+    width: 64px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: var(--text);
+    background: transparent;
 }
 
-
-/* -------------------------------------------
-   PLAN DETAILS
-------------------------------------------- */
-.detail {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
+/* ---------------------------------------------------
+    CART PAGE
+------------------------------------------------------ */
+.cart-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 18px;
 }
 
-.detail-left {
-  background: var(--card);
-  padding: 22px;
-  border-radius: 12px;
-  flex: 1;
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    padding: 16px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
-.detail-logo {
-  height: 70px;
-  margin-bottom: 14px;
+.cart-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
 }
 
-.price-large {
-  font-size: 2rem;
-  color: var(--accent);
+.item-total {
+    margin-top: 8px;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: right;
 }
 
-
-/* -------------------------------------------
-   CONTACT PAGE
-------------------------------------------- */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 20px;
-  margin-top: 20px;
+.cart-right {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    height: fit-content;
 }
 
-
-/* -------------------------------------------
-   ADMIN DASHBOARD
-------------------------------------------- */
-.admin-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-  gap: 18px;
-  margin: 20px 0;
+.cart-right h3 {
+    margin-bottom: 10px;
 }
 
-.stat-card h4 {
-  margin-bottom: 6px;
+.summary-amount {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-top: 6px;
+    color: var(--accent);
 }
 
-.stat-number {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--accent);
+/* ---------------------------------------------------
+    CARDS
+------------------------------------------------------ */
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
-.plans-admin-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 10px;
+/* ---------------------------------------------------
+    MUTED TEXT
+------------------------------------------------------ */
+.muted {
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
-.admin-plan-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+/* ---------------------------------------------------
+    FORMS
+------------------------------------------------------ */
+input, select {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--text);
+    padding: 10px;
+    border-radius: var(--radius);
 }
 
-.admin-logo {
-  height: 50px;
+/* ---------------------------------------------------
+    FOOTER
+------------------------------------------------------ */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: var(--muted);
 }
 
-.admin-actions {
-  margin-left: auto;
-  display: flex;
-  gap: 10px;
-}
-
-
-/* -------------------------------------------
-   FOOTER
-------------------------------------------- */
-.site-footer {
-  margin-top: 40px;
-  padding: 20px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-links a {
-  color: var(--muted);
-  margin-left: 12px;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  color: #fff;
-}
-
-
-/* -------------------------------------------
-   ANIMATIONS (JS-controlled)
-------------------------------------------- */
-.card,
-.hero-left,
-.hero-right {
-  transition: opacity .6s ease, transform .6s ease;
-}
-
-
-/* -------------------------------------------
-   RESPONSIVE
-------------------------------------------- */
+/* ---------------------------------------------------
+    RESPONSIVE
+------------------------------------------------------ */
 @media (max-width: 900px) {
-  .hero {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-  .hero-right {
-    text-align: center;
-  }
-  .footer-inner {
-    flex-direction: column;
-    gap: 10px;
-  }
+    .cart-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 16px;
+        gap: 12px;
+    }
 }
