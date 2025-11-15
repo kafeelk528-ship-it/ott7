@@ -1,5 +1,9 @@
-Flask==3.0.0
+Flask==3.0.2
+Werkzeug==3.0.1
 stripe==8.5.0
-reportlab==3.6.12
-Werkzeug==2.2.3
-gunicorn==21.2.0
+reportlab==4.0.9
+Jinja2==3.1.4
+itsdangerous==2.1.2
+click==8.1.7
+blinker==1.7.0
+python-dotenv==1.0.1
