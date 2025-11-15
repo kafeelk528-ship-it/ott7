@@ -8,10 +8,7 @@
         <p>Buy streaming subscriptions at affordable rates with instant delivery.</p>
 
         <div class="hero-buttons">
-            <a class="btn primary" href="{{ url_for('plans_page') }}">View Plans</a>
-
-            <!-- Comparison button removed because no 'comparison' route exists -->
-            <!-- <a class="btn ghost" href="{{ url_for('comparison') }}">Compare Plans</a> -->
+            <a class="btn primary" href="{{ url_for('show_plans') }}">View Plans</a>
         </div>
     </div>
 </section>
@@ -25,8 +22,8 @@
             <img src="{{ url_for('static', filename='ott/' ~ p['logo']) }}" class="plan-logo" alt="{{ p['name'] }}">
             <h3>{{ p['name'] }}</h3>
             <p class="price">₹{{ p['price'] }}</p>
-            <p class="validity">{{ p['validity'] }}</p>
-            <a class="btn small" href="{{ url_for('checkout', plan_id=p['id']) }}">Buy Now</a>
+            <p class="validity">Instant Delivery</p>
+            <a class="btn small" href="{{ url_for('plan_details', plan_id=p['id']) }}">View Details</a>
         </div>
         {% endfor %}
     </div>
