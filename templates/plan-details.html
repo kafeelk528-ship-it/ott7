@@ -1,26 +1,101 @@
 {% extends "base.html" %}
-{% block title %}{{ plan.name }} — OTT Store{% endblock %}
+{% block title %}{{ plan.name }} — Details{% endblock %}
+
 {% block content %}
-<div class="detail">
-  <div class="detail-left">
-    <img src="{{ url_for('static', filename=plan.logo) }}" class="detail-logo" alt="">
-    <h2>{{ plan.name }}</h2>
-    <p class="price-large">₹{{ plan.price }}</p>
-    <p>Demo delivery after payment. Use Stripe test card <code>4242 4242 4242 4242</code>.</p>
-    <div class="cta" style="margin-top:12px">
-      <a class="btn primary" href="{{ url_for('create_checkout_session', id=plan.id) }}">Buy Now</a>
-      <a class="btn ghost" href="{{ url_for('show_plans') }}">Back</a>
+
+<section class="plan-details-container">
+
+    <div class="plan-header">
+        <img class="plan-large-logo" src="{{ url_for('static', filename=plan.logo) }}" alt="{{ plan.name }}">
+        <h1 class="plan-title">{{ plan.name }}</h1>
+        <div class="plan-price">₹{{ plan.price }}</div>
     </div>
-  </div>
-  <aside class="detail-right">
-    <div class="card">
-      <h4>What's included</h4>
-      <ul>
-        <li>Demo confirmation</li>
-        <li>30 days validity</li>
-        <li>Demo support</li>
-      </ul>
+
+    <div class="plan-card-info">
+
+        <h3>What's Included</h3>
+        <ul class="feature-list">
+            <li>✔ 30 Days Subscription (Demo)</li>
+            <li>✔ Full HD / UHD (depends on provider)</li>
+            <li>✔ Watch on TV, Mobile, Laptop</li>
+            <li>✔ No Streaming Included — For College Project Only</li>
+            <li>✔ Instant Email Delivery (Demo)</li>
+        </ul>
+
+        <div class="actions">
+            <a class="btn outlined" href="{{ url_for('add_to_cart', plan_id=plan.id) }}">Add to Cart</a>
+            <a class="btn primary" href="{{ url_for('create_checkout_session', plan_id=plan.id) }}">Buy Now</a>
+        </div>
+
     </div>
-  </aside>
-</div>
+
+</section>
+
+<style>
+.plan-details-container {
+    max-width: 940px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.plan-header {
+    margin-bottom: 35px;
+}
+
+.plan-large-logo {
+    width: 140px;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.plan-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.plan-price {
+    font-size: 32px;
+    color: #4cc9f0;
+    font-weight: 700;
+}
+
+.plan-card-info {
+    background: #121212;
+    padding: 35px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 22px rgba(0,0,0,0.4);
+    text-align: left;
+}
+
+.plan-card-info h3 {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.feature-list li {
+    padding: 8px 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+}
+
+.actions .btn {
+    flex: 1;
+}
+</style>
+
 {% endblock %}
