@@ -1,47 +1,42 @@
 {% extends "base.html" %}
 {% block title %}Cart — OTT Store{% endblock %}
+
 {% block content %}
 <h2 class="section-title">Your Cart</h2>
 
-<form action="{{ url_for('update_cart') }}" method="post">
-  <div class="cart-grid">
-    {% if items %}
-      <div class="cart-left">
-        {% for it in items %}
-          <div class="cart-item card">
-            <div class="left">
-              <img src="{{ url_for('static', filename='ott/' ~ it.plan.logo) }}" alt="{{ it.plan.name }}" class="cart-logo">
+{% if items|length == 0 %}
+    <p>Your cart is empty.</p>
+    <a href="{{ url_for('show_plans') }}" class="btn primary">Browse Plans</a>
+{% else %}
+    <div class="cart-container">
+        {% for item in items %}
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename=item.logo) }}" class="cart-logo">
+
+                <div class="cart-info">
+                    <h3>{{ item.name }}</h3>
+                    <p>₹{{ item.price }} × {{ item.qty }}</p>
+                </div>
+
+                <div class="cart-total">₹{{ item.total }}</div>
+
+                <a href="{{ url_for('remove_from_cart', plan_id=item.id) }}" class="btn small danger">Remove</a>
             </div>
-            <div class="middle">
-              <h4>{{ it.plan.name }}</h4>
-              <div class="muted">₹{{ it.plan.price }} each</div>
-            </div>
-            <div class="right">
-              <input type="number" name="qty-{{ it.plan.id }}" value="{{ it.qty }}" min="1" class="qty-input">
-              <div class="item-total">₹{{ it.item_total }}</div>
-              <form action="{{ url_for('remove_from_cart', plan_id=it.plan.id) }}" method="post" style="display:inline">
-                <button class="btn small ghost">Remove</button>
-              </form>
-            </div>
-          </div>
         {% endfor %}
-        <div style="margin-top:12px">
-          <button class="btn outlined" type="submit">Update Cart</button>
-        </div>
-      </div>
 
-      <aside class="cart-right card">
-        <h3>Order Summary</h3>
-        <div class="muted">Subtotal</div>
-        <div class="summary-amount">₹{{ total }}</div>
+        <hr>
 
-        <div style="margin-top:16px">
-          <a class="btn primary" href="{{ url_for('checkout') }}">Proceed to Checkout</a>
+        <div class="cart-summary">
+            <h3>Total: ₹{{ total }}</h3>
         </div>
-      </aside>
-    {% else %}
-      <div class="card">Your cart is empty. <a href="{{ url_for('show_plans') }}">Browse plans</a></div>
-    {% endif %}
-  </div>
-</form>
+
+        <a href="{{ url_for('create_checkout_session', plan_id=items[0].id) }}" class="btn primary">
+            Proceed to Checkout
+        </a>
+
+        <a href="{{ url_for('clear_cart') }}" class="btn danger outlined">
+            Clear Cart
+        </a>
+    </div>
+{% endif %}
 {% endblock %}
