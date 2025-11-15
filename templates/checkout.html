@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Checkout — OTT Store{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Checkout</h2>
+  <p class="muted">You will be redirected to secure Stripe checkout.</p>
+  <a href="{{ url_for('checkout') }}" class="btn primary">Pay Now</a>
+</div>
+{% endblock %}
