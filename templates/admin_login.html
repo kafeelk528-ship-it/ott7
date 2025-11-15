@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Admin Login — OTT Store{% endblock %}
+{% block content %}
+<h2 class="page-title">Admin Login</h2>
+<div class="card" style="max-width:420px">
+  <form method="post">
+    <label>Email</label>
+    <input name="email" type="email" required style="width:100%; padding:10px; margin:6px 0; border-radius:6px">
+    <label>Password</label>
+    <input name="password" type="password" required style="width:100%; padding:10px; margin:6px 0; border-radius:6px">
+    <div style="margin-top:12px">
+      <button class="btn primary" type="submit">Login as Admin</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
