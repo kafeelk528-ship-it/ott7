@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Compare Plans — OTT Store{% endblock %}
+{% block content %}
+<h2 class="page-title">Pricing Comparison</h2>
+<div class="card">
+  <table style="width:100%; color:var(--text); border-collapse:collapse">
+    <thead>
+      <tr><th>Plan</th><th>Price</th><th>Duration</th><th>Best For</th></tr>
+    </thead>
+    <tbody>
+      {% for p in plans %}
+      <tr style="border-top:1px solid rgba(255,255,255,0.03)"><td>{{ p.name }}</td><td>₹{{ p.price }}</td><td>30 days</td><td>Casual viewers</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

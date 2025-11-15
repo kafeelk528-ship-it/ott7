@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home — OTT Store{% endblock %}
+{% block content %}
+<div class="hero-banner" style="background-image:url('{{ url_for('static', filename='hero-banner.jpg') }}')">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Buy & Sell OTT Subscriptions Instantly</h1>
+    <p class="tagline">Fast • Secure • Demo Stripe Checkout</p>
+    <a class="btn primary" href="{{ url_for('show_plans') }}">Explore Plans</a>
+    <a class="btn ghost" href="{{ url_for('comparison') }}">Compare Plans</a>
+  </div>
+</div>
+
+<section class="logos-row">
+  {% for p in plans[:5] %}
+    <img src="{{ url_for('static', filename=p.logo) }}" alt="{{ p.name }}">
+  {% endfor %}
+</section>
+
+<section>
+  <h2 class="section-title">Featured Plans</h2>
+  <div class="plans-grid">
+    {% for p in plans[:3] %}
+      <article class="card plan-card">
+        <div class="card-top">
+          <img class="provider-logo" src="{{ url_for('static', filename=p.logo) }}" alt="">
+          <div class="price">₹{{ p.price }}</div>
+        </div>
+        <h3>{{ p.name }}</h3>
+        <p class="muted">30 days validity • Demo</p>
+        <div class="card-actions">
+          <a class="btn outlined" href="{{ url_for('plan_details', id=p.id) }}">Details</a>
+          <a class="btn primary" href="{{ url_for('create_checkout_session', id=p.id) }}">Buy ₹{{ p.price }}</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

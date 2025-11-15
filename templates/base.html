@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}OTT Store{% endblock %}</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Chart.js CDN for admin charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="{{ url_for('static', filename='main.js') }}"></script>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body class="theme-light">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='logo-dark.png') }}" alt="Logo" class="logo-img" id="logoImg">
+      </a>
+
+      <nav class="nav">
+        <a href="{{ url_for('show_plans') }}">Plans</a>
+        <a href="{{ url_for('comparison') }}">Compare</a>
+        <a href="{{ url_for('faq') }}">FAQ</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('testimonials') }}">Testimonials</a>
+        {% if user %}
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+        <button id="themeToggle" class="btn small">Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© {{ 2025 }} OTT Store Demo</div>
+      <div class="footer-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('show_plans') }}">Plans</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

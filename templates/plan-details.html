@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ plan.name }} — OTT Store{% endblock %}
+{% block content %}
+<div class="detail">
+  <div class="detail-left">
+    <img src="{{ url_for('static', filename=plan.logo) }}" class="detail-logo" alt="">
+    <h2>{{ plan.name }}</h2>
+    <p class="price-large">₹{{ plan.price }}</p>
+    <p>Demo delivery after payment. Use Stripe test card 4242 4242 4242 4242.</p>
+    <div class="cta">
+      <a class="btn primary" href="{{ url_for('create_checkout_session', id=plan.id) }}">Buy Now</a>
+      <a class="btn ghost" href="{{ url_for('show_plans') }}">Back</a>
+    </div>
+  </div>
+  <aside class="detail-right">
+    <div class="box card">
+      <h4>What's included</h4>
+      <ul>
+        <li>Demo confirmation</li>
+        <li>30 days validity</li>
+        <li>Demo support</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+{% endblock %}

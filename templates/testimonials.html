@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Testimonials — OTT Store{% endblock %}
+{% block content %}
+<h2 class="page-title">What people say</h2>
+<div class="plans-grid">
+  {% for t in testimonials %}
+  <div class="card">
+    <p>"{{ t.note }}"</p>
+    <p class="muted">— {{ t.name }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

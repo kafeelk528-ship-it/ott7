@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Admin — OTT Store{% endblock %}
+{% block content %}
+<h2 class="page-title">Admin Dashboard (Demo)</h2>
+
+<div class="admin-grid">
+  <div class="card stat-card">
+    <h4>Total Plans</h4>
+    <div class="stat-number">{{ plans|length }}</div>
+  </div>
+  <div class="card stat-card">
+    <h4>Orders</h4>
+    <div class="stat-number">{{ stats.orders }}</div>
+  </div>
+  <div class="card stat-card">
+    <h4>Revenue (₹)</h4>
+    <div class="stat-number">{{ stats.revenue }}</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:18px">
+  <h3>Orders by Plan</h3>
+  <canvas id="ordersChart" width="600" height="240"></canvas>
+</div>
+
+<script>
+  const labels = {{ labels|safe }};
+  const data = {{ chartdata|safe }};
+  window.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('ordersChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{ label: 'Orders', data: data, backgroundColor: 'rgba(229,9,20,0.85)'}]
+      },
+      options: { responsive:true, maintainAspectRatio:false }
+    });
+  });
+</script>
+{% endblock %}

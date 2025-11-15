@@ -1,0 +1,102 @@
+:root{
+  --light-bg: #f6f8fb;
+  --light-card: #ffffff;
+  --light-text: #111827;
+  --primary: #1e88e5;
+  --muted-light: #6b7280;
+
+  --dark-bg: #0b0b0d;
+  --dark-card: #0f1113;
+  --dark-text: #e6e7e8;
+  --accent: #e50914;
+  --muted-dark: #9aa0a6;
+
+  --radius: 12px;
+  --max-width: 1150px;
+}
+
+/* Base resets */
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, Arial;background:var(--light-bg);color:var(--light-text);-webkit-font-smoothing:antialiased}
+.container{width:94%;max-width:var(--max-width);margin:auto;padding:24px 0}
+
+/* Theme styles using .theme-dark on body to switch */
+body.theme-dark{
+  background:var(--dark-bg);
+  color:var(--dark-text);
+}
+body.theme-dark .card{background:var(--dark-card);border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 28px rgba(0,0,0,0.6)}
+body.theme-dark .nav a{color:var(--muted-dark)}
+body.theme-dark .muted{color:var(--muted-dark)}
+body.theme-dark .btn.primary{background:var(--accent);box-shadow:0 8px 18px rgba(229,9,20,0.2)}
+
+/* Light mode card */
+.card{background:var(--light-card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+
+/* Header */
+.site-header{background:transparent;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.05)}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo-img{height:44px}
+.nav a{margin-left:18px;color:var(--muted-light);text-decoration:none;font-weight:600}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700;cursor:pointer;border:1px solid transparent}
+.btn.primary{background:var(--primary);color:#fff}
+.btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.08);color:var(--light-text)}
+.btn.outlined{background:transparent;border:1px solid var(--primary);color:var(--primary)}
+.btn.small{padding:6px 10px;font-size:0.85rem}
+
+/* Hero banner */
+.hero-banner{position:relative;border-radius:16px;overflow:hidden;margin-bottom:28px;background-size:cover;background-position:center;height:420px}
+.hero-banner .overlay{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.55))}
+.hero-content{position:absolute;left:50px;bottom:40px;max-width:480px}
+.hero-content h1{font-size:2.6rem;margin:0 0 12px}
+.tagline{color:var(--muted-light);margin-bottom:12px}
+
+/* Logos row */
+.logos-row{display:flex;gap:18px;align-items:center;margin-bottom:20px}
+.logos-row img{height:34px;opacity:0.9}
+
+/* Plans grid & cards */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.provider-logo{height:54px}
+.price{color:var(--primary);font-weight:800}
+
+/* Detail */
+.detail{display:flex;gap:28px;margin-top:18px}
+.detail-left{flex:1}
+.detail-right{width:300px}
+.detail-logo{height:70px;margin-bottom:12px}
+.price-large{font-size:2rem;color:var(--primary);margin:6px 0}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+
+/* Admin */
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:12px 0}
+.stat-number{font-size:1.6rem;font-weight:800;color:var(--primary)}
+
+/* Success */
+.success-box{width:420px;margin:50px auto;padding:36px;border-radius:12px;text-align:center}
+.checkmark{font-size:46px;color:#32d74b;margin-bottom:8px}
+
+/* Footer */
+.site-footer{margin-top:40px;padding:18px 0;border-top:1px solid rgba(0,0,0,0.06)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-links a{color:var(--muted-light);margin-left:12px}
+
+/* Cards hover */
+.card{transition:transform .18s ease, box-shadow .18s ease}
+.card:hover{transform:translateY(-6px)}
+
+/* small helpers */
+.muted{color:#6b7280}
+.section-title{font-size:1.4rem;margin-bottom:12px}
+
+/* responsive */
+@media(max-width:900px){
+  .hero-content{left:20px;right:20px;text-align:left}
+  .detail{flex-direction:column}
+  .footer-inner{flex-direction:column;gap:12px}
+}

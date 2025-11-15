@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Success — OTT Store{% endblock %}
+{% block content %}
+<div class="success-box">
+  <div class="checkmark">✔</div>
+  <h2>Payment Successful</h2>
+  {% if plan %}
+    <p class="muted">You purchased <strong>{{ plan.name }}</strong> for <strong>₹{{ plan.price }}</strong>.</p>
+  {% endif %}
+  <a class="btn primary" href="{{ url_for('show_plans') }}">Back to Plans</a>
+</div>
+{% endblock %}
