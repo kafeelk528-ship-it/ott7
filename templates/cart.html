@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Cart — OTT Store{% endblock %}
+{% block content %}
+<h2 class="section-title">Your Cart</h2>
+
+<form action="{{ url_for('update_cart') }}" method="post">
+  <div class="cart-grid">
+    {% if items %}
+      <div class="cart-left">
+        {% for it in items %}
+          <div class="cart-item card">
+            <div class="left">
+              <img src="{{ url_for('static', filename='ott/' ~ it.plan.logo) }}" alt="{{ it.plan.name }}" class="cart-logo">
+            </div>
+            <div class="middle">
+              <h4>{{ it.plan.name }}</h4>
+              <div class="muted">₹{{ it.plan.price }} each</div>
+            </div>
+            <div class="right">
+              <input type="number" name="qty-{{ it.plan.id }}" value="{{ it.qty }}" min="1" class="qty-input">
+              <div class="item-total">₹{{ it.item_total }}</div>
+              <form action="{{ url_for('remove_from_cart', plan_id=it.plan.id) }}" method="post" style="display:inline">
+                <button class="btn small ghost">Remove</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+        <div style="margin-top:12px">
+          <button class="btn outlined" type="submit">Update Cart</button>
+        </div>
+      </div>
+
+      <aside class="cart-right card">
+        <h3>Order Summary</h3>
+        <div class="muted">Subtotal</div>
+        <div class="summary-amount">₹{{ total }}</div>
+
+        <div style="margin-top:16px">
+          <a class="btn primary" href="{{ url_for('checkout') }}">Proceed to Checkout</a>
+        </div>
+      </aside>
+    {% else %}
+      <div class="card">Your cart is empty. <a href="{{ url_for('show_plans') }}">Browse plans</a></div>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}
