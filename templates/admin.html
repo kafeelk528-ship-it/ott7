@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Admin — OTT Store{% endblock %}
 {% block content %}
-<h2 class="page-title">Admin Dashboard (Demo)</h2>
+<h2 class="page-title">Admin Dashboard</h2>
 
 <div class="admin-grid">
   <div class="card stat-card">
-    <h4>Total Plans</h4>
-    <div class="stat-number">{{ plans|length }}</div>
+    <h4>Users</h4>
+    <div class="stat-number">{{ stats.users }}</div>
   </div>
   <div class="card stat-card">
     <h4>Orders</h4>
@@ -18,21 +18,71 @@
   </div>
 </div>
 
-<div class="card" style="margin-top:18px">
+<div class="card" style="margin-top:16px">
   <h3>Orders by Plan</h3>
-  <canvas id="ordersChart" width="600" height="240"></canvas>
+  <canvas id="ordersChart" style="height:240px"></canvas>
+</div>
+
+<div style="display:grid; grid-template-columns: 1fr 380px; gap:16px; margin-top:16px;">
+  <div class="card">
+    <h3>Recent Messages</h3>
+    {% if messages %}
+      <div style="display:flex;flex-direction:column;gap:8px">
+        {% for m in messages %}
+          <div style="border-bottom:1px solid rgba(0,0,0,0.04); padding:8px 0;">
+            <strong>{{ m['name'] }}</strong> — <span class="muted">{{ m['email'] }}</span>
+            <div style="margin-top:6px">{{ m['message'] }}</div>
+            <div class="muted" style="margin-top:6px;font-size:0.9rem">{{ m['created_at'] }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="muted">No messages yet.</div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h3>Coupons</h3>
+    <form action="{{ url_for('admin_create_coupon') }}" method="post" style="display:grid; gap:8px;">
+      <input name="code" placeholder="CODE" required style="padding:8px; border-radius:6px" />
+      <select name="type" style="padding:8px; border-radius:6px">
+        <option value="flat">Flat (₹)</option>
+        <option value="percent">Percent (%)</option>
+      </select>
+      <input name="amount" type="number" placeholder="Amount" required style="padding:8px; border-radius:6px" />
+      <input name="expires" type="date" style="padding:8px; border-radius:6px" />
+      <button class="btn primary" type="submit">Create Coupon</button>
+    </form>
+
+    <div style="margin-top:12px">
+      {% if coupons %}
+        <ul>
+          {% for c in coupons %}
+            <li style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;">
+              <div><strong>{{ c.code }}</strong> — {{ c.type }} {{ c.amount }} {% if c.expires_at %} (exp: {{ c.expires_at.split('T')[0] }}) {% endif %}</div>
+              <form method="post" action="{{ url_for('admin_delete_coupon', code=c.code) }}" style="margin:0;">
+                <button class="btn small ghost" type="submit">Delete</button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="muted">No coupons</div>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 <script>
   const labels = {{ labels|safe }};
   const data = {{ chartdata|safe }};
-  window.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('ordersChart').getContext('2d');
     new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
-        datasets: [{ label: 'Orders', data: data, backgroundColor: 'rgba(229,9,20,0.85)'}]
+        datasets: [{ label: 'Orders', data: data, backgroundColor: 'rgba(30,136,229,0.9)'}]
       },
       options: { responsive:true, maintainAspectRatio:false }
     });
