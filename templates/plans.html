@@ -2,6 +2,12 @@
 {% block title %}Plans — OTT Store{% endblock %}
 {% block content %}
 <h2 class="section-title">All Plans</h2>
+
+<form action="{{ url_for('apply_coupon') }}" method="post" style="margin-bottom:14px; display:flex; gap:8px; align-items:center; max-width:520px;">
+  <input name="coupon" placeholder="Enter coupon code (demo)" style="flex:1; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.08)">
+  <button class="btn outlined" type="submit">Apply</button>
+</form>
+
 <div class="plans-grid">
   {% for p in plans %}
     <article class="card plan-card">
