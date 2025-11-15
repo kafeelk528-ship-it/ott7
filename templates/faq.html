@@ -3,9 +3,13 @@
 {% block content %}
 <h2 class="page-title">Frequently Asked Questions</h2>
 <div class="card">
-  <h4>Q: Is this real payment?</h4>
-  <p>A: No — use Stripe test keys and test card 4242 4242 4242 4242 for demo.</p>
-  <h4>Q: Can I add more plans?</h4>
-  <p>A: Yes — edit plans list in app.py (demo mode).</p>
+  <h4>Q: Is this a real payment?</h4>
+  <p>A: No — this project uses Stripe test mode. Use card 4242 4242 4242 4242.</p>
+
+  <h4>Q: Are OTT credentials delivered?</h4>
+  <p>A: This demo only simulates delivery. For real delivery you'd integrate vendors and secure distribution.</p>
+
+  <h4>Q: How do I add plans?</h4>
+  <p>A: Edit `app.py` or use an admin CRUD (can be added). Plans are stored in the local SQLite DB seeded on startup.</p>
 </div>
 {% endblock %}
