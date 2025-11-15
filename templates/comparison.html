@@ -3,13 +3,13 @@
 {% block content %}
 <h2 class="page-title">Pricing Comparison</h2>
 <div class="card">
-  <table style="width:100%; color:var(--text); border-collapse:collapse">
+  <table style="width:100%; border-collapse:collapse; color:inherit">
     <thead>
-      <tr><th>Plan</th><th>Price</th><th>Duration</th><th>Best For</th></tr>
+      <tr><th style="text-align:left; padding:8px">Plan</th><th style="padding:8px">Price</th><th style="padding:8px">Duration</th><th style="padding:8px">Best For</th></tr>
     </thead>
     <tbody>
       {% for p in plans %}
-      <tr style="border-top:1px solid rgba(255,255,255,0.03)"><td>{{ p.name }}</td><td>₹{{ p.price }}</td><td>30 days</td><td>Casual viewers</td></tr>
+      <tr style="border-top:1px solid rgba(0,0,0,0.05)"><td style="padding:10px">{{ p.name }}</td><td style="padding:10px">₹{{ p.price }}</td><td style="padding:10px">30 days</td><td style="padding:10px">Casual viewers</td></tr>
       {% endfor %}
     </tbody>
   </table>
