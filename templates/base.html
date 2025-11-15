@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{% block title %}OTT Store{% endblock %}</title>
 
-  <!-- styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <!-- Chart.js CDN for admin charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="{{ url_for('static', filename='main.js') }}"></script>
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
-<body class="theme-light">
+<body class="{{ 'theme-dark' if request.cookies.get('theme') == 'dark' else 'theme-light' }}">
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="{{ url_for('home') }}">
@@ -26,17 +24,32 @@
         <a href="{{ url_for('about') }}">About</a>
         <a href="{{ url_for('contact') }}">Contact</a>
         <a href="{{ url_for('testimonials') }}">Testimonials</a>
+
         {% if user %}
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
           <a href="{{ url_for('logout') }}">Logout</a>
         {% else %}
           <a href="{{ url_for('login') }}">Login</a>
         {% endif %}
+
         <button id="themeToggle" class="btn small">Dark</button>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div style="margin-bottom:16px">
+          {% for category, m in messages %}
+            <div class="card" style="padding:10px; margin-bottom:8px; border-left:4px solid {% if category=='success' %}#22c55e{% elif category=='danger' or category=='warning' %}#f97316{% else %}#60a5fa{% endif %}">
+              {{ m }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     {% block content %}{% endblock %}
   </main>
 
