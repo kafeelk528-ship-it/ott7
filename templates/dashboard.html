@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — OTT Store{% endblock %}
+{% block content %}
+<h2 class="page-title">My Dashboard</h2>
+
+<div style="max-width:900px;">
+  <h3>My Orders</h3>
+  {% if orders %}
+    <div style="display:flex;flex-direction:column;gap:12px">
+      {% for o in orders %}
+        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div>
+            <strong>{{ o.plan_name }}</strong>
+            <div class="muted">Ordered on {{ o.created_at }}</div>
+          </div>
+          <div style="text-align:right">
+            <div>₹{{ o.amount }}</div>
+            <div style="margin-top:8px">
+              <a class="btn small outlined" href="{{ url_for('invoice', order_id=o.id) }}">Download Invoice</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card">You have no orders yet.</div>
+  {% endif %}
+</div>
+{% endblock %}
