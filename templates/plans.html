@@ -1,40 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Plans — OTT Store{% endblock %}
-
 {% block content %}
-<h2 class="section-title">All Plans</h2>
+<section class="ts-hero">
+  <div class="ts-hero-inner">
+    <h1>Top OTT Subscriptions</h1>
+    <p class="muted">Choose a plan, add to cart and checkout securely.</p>
+  </div>
+</section>
 
-<form action="{{ url_for('apply_coupon') }}" method="post" style="margin-bottom:14px; display:flex; gap:8px; align-items:center; max-width:520px;">
-  <input name="coupon" placeholder="Enter coupon code (demo)" style="flex:1; padding:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.08)">
-  <button class="btn outlined" type="submit">Apply</button>
-</form>
+<section class="ts-plans container">
+  <div class="plans-grid-ts">
+    {% for p in plans %}
+      <div class="ts-card">
+        <div class="ts-card-top">
+          <div class="logo-wrap">
+            <img src="{{ url_for('static', filename='ott/' ~ p['logo']) }}" alt="{{ p['name'] }}">
+          </div>
+          <div class="plan-title">
+            <h3>{{ p['name'] }}</h3>
+            <div class="muted">30 days • instant demo</div>
+          </div>
+        </div>
 
-<div class="plans-grid">
-  {% for p in plans %}
-    <article class="card plan-card">
-      <div class="card-top">
+        <div class="ts-card-body">
+          <div class="price">₹{{ p['price'] }}</div>
+          <form action="{{ url_for('add_to_cart', plan_id=p['id']) }}" method="post" class="addcart-form">
+            <div class="qty-wrap">
+              <label>Qty</label>
+              <input type="number" name="qty" value="1" min="1" class="qty-input">
+            </div>
 
-        <!-- FIXED LOGO PATH -->
-        <img class="provider-logo" src="{{ url_for('static', filename='ott/' ~ p['logo']) }}" alt="">
-
-        <div class="price">₹{{ p['price'] }}</div>
+            <div class="ts-ctas">
+              <button class="btn primary" type="submit">Add to Cart</button>
+              <a class="btn ghost" href="{{ url_for('plan_details', plan_id=p['id']) }}">Details</a>
+            </div>
+          </form>
+        </div>
       </div>
-
-      <h3>{{ p['name'] }}</h3>
-      <p class="muted">30 days validity • Demo</p>
-
-      <div class="card-actions">
-
-        <!-- FIXED DETAILS LINK -->
-        <a class="btn outlined" href="{{ url_for('plan_details', plan_id=p['id']) }}">Details</a>
-
-        <!-- FIXED CHECKOUT LINK -->
-        <a class="btn primary" href="{{ url_for('create_checkout_session', plan_id=p['id']) }}">
-            Buy ₹{{ p['price'] }}
-        </a>
-      </div>
-
-    </article>
-  {% endfor %}
-</div>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}
