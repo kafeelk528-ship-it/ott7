@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home — OTT Store{% endblock %}
 {% block content %}
+
 <div class="hero-banner" style="background-image:url('{{ url_for('static', filename='hero-banner.jpg') }}')">
   <div class="overlay"></div>
   <div class="hero-content">
@@ -36,4 +37,5 @@
     {% endfor %}
   </div>
 </section>
+
 {% endblock %}
